@@ -1,0 +1,27 @@
+{
+    "builders": [
+        {
+            "type": "docker",
+            "image": "sphinxgaia/centos:latest",
+            "commit": true,
+            "changes": [
+            "CMD [\"java\", \"-version\"]"
+            ]
+        }
+    ],
+    "provisionners": [
+        {
+            "type": "ansible-local",
+            "playbook_file": "java.yml"
+        }
+    ],
+    "post-processors": [
+        [
+            {
+                "type": "docker-tag",
+                "repository": "sphinxgaia/centos",
+                "tag": "v1.2"
+            }
+        ]
+    ]
+}

@@ -4,13 +4,7 @@
   vars: 
     - JAVA_VERSION: jdk-11.0.2
   tasks :
-    - name: Download open{{JAVA_VERSION}}
-      get_url:
-        url: https://download.java.net/java/GA/jdk11/9/GPL/open{{JAVA_VERSION}}_linux-x64_bin.tar.gz
-        dest: /tmp/open{{JAVA_VERSION}}_linux-x64_bin.tar.gz
-    - name: Untar
-      unarchive:
-        src: /tmp/open{{JAVA_VERSION}}_linux-x64_bin.tar.gz
-        dest: /usr/local/
-    - name: Add Java to env PATH
-      command: 'echo "export JAVA_HOME=/usr/local/{{JAVA_VERSION}}" >> /etc/profile.d/jdk11.sh  && echo "export PATH=$PATH:/usr/local/{{JAVA_VERSION}}/bin" >> /etc/profile.d/jdk11.sh'
+    - name: Install Java 11 from repo
+      yum:
+        name: java-11-openjdk
+        state: latest

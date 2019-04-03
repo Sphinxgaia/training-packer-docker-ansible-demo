@@ -2,16 +2,16 @@
     "builders": [
         {
             "type": "docker",
-            "image": "sphinxgaia/centos:latest",
+            "image": "sphinxgaia/training-centos:latest",
             "commit": true,
             "changes": [
             "CMD [\"java\", \"-version\"]"
             ]
         }
     ],
-    "provisionners": [
+    "provisioners": [
         {
-            "type": "ansible-local",
+            "type": "ansible",
             "playbook_file": "java.yml"
         }
     ],
